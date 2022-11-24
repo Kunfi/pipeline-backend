@@ -63,3 +63,17 @@ jobs:
             docker rmi ${{ secrets.DOCKER_USERNAME }}/pipeline-backend --force
             docker pull ${{ secrets.DOCKER_USERNAME }}/pipeline-backend --force
             docker-compose up -d
+
+  automated-api-tests:
+    needs: push_to_registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+      - name: Run API tests
+        run: |
+          postman collection run "21253228-4f9a0315-8d28-446d-9ce3-7104be9ab4ee" -e "21253228-0eaacb8f-21a1-4391-8604-6720bfa4bd4b"
