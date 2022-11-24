@@ -1,0 +1,13 @@
+name: Sonarqube
+run-name: ${{ github.actor }} is creating a pipeline to run sonarqube
+on: [push]
+jobs:
+  use-sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: SonarQube Scan
+        run:
+          ./gradlew sonarqube --info -Dsonar.projectKey=uk223
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}

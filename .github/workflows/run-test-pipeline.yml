@@ -2,7 +2,7 @@ name: Dynamic Test
 run-name: ${{ github.actor }} is creating a pipeline to run a test
 on: [push]
 jobs:
-  build:
+  run-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,4 +15,4 @@ jobs:
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
-      - run: gradle build 
+      - run: ./gradlew build
