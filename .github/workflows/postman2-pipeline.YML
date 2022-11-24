@@ -1,4 +1,4 @@
-name: PI tests using Postman CLI
+name: API tests using Postman CLI
 
 on: push
 
