@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Change Gradle Permission
+        run: chmod +x ./gradlew
       - name: SonarQube Scan
         run:
           ./gradlew sonarqube --info -Dsonar.projectKey=uk223
