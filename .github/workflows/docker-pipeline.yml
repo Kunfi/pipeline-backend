@@ -15,7 +15,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: build image
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/pipeline-backend:latest
+        run: docker build . --tfile Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/pipeline-backend:latest
 
       - name: Push image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/pipeline-backend
