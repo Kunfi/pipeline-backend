@@ -1,0 +1,9 @@
+name: Bash script
+run-name: ${{ github.actor }} is creating a pipeline containing a bash script
+on: [push]
+jobs:
+  use-bash-shell-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: sh run.sh
