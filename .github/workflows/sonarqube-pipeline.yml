@@ -11,8 +11,6 @@ jobs:
         with:
           java-version: '18'
           distribution: 'temurin'
-      - name: Change Gradle Permission
-        run: chmod +x ./gradlew
       - name: SonarQube Scan
         run:
           ./gradlew sonarqube --info -Dsonar.projectKey=uk223
