@@ -15,10 +15,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: build image
-        run: docker build . --file Dockerfile --tag kunfi/pipeline-backend:latest
+        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/pipeline-backend:latest
 
       - name: Push image
-        run: docker push $username/pipeline-backend
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/pipeline-backend
 
       - name: deploy on server
         uses: appleboy/ssh-action@master
@@ -29,6 +29,6 @@ jobs:
           port: 22
           script:
             docker-compose down
-            docker rmi kunfi/pipeline-backend --force
-            docker pull kunfi/pipeline-backend --force
+            docker rmi ${{ secrets.DOCKER_USERNAME }}/pipeline-backend --force
+            docker pull ${{ secrets.DOCKER_USERNAME }}/pipeline-backend --force
             docker-compose up -d
