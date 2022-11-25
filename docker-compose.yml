@@ -2,10 +2,9 @@ version: '3.8'
 
 services:
   frontend:
-    cpus: 0.1
 
     image: kunfi/frontend
-    container_name: frontend
+    container_name: frontend_kunfi
     depends_on:
       - backend
     ports:
@@ -13,11 +12,9 @@ services:
     env_file: 
       - .env
   backend:
-    mem_limit: 512M
-    cpus: 0.2
 
     image: kunfi/backend
-    container_name: backend
+    container_name: backend_kunfi
     depends_on:
       - db
     ports:
@@ -26,13 +23,9 @@ services:
       - .env
 
   db:
-    mem_limit: 128m
-    cpus: 0.05
 
     image: 'postgres:10-alpine'
-    container_name: db
-    ports:
-      - '5432:5432'
+    container_name: dbkunfi
     environment:
       POSTGRES_PASSWORD: 'postgres'
       POSTGRES_USER: 'postgres'
