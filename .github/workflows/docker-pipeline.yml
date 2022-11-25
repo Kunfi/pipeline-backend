@@ -65,7 +65,7 @@ jobs:
             docker-compose up -d
 
   automated-api-tests:
-    needs: push_to_registry
+    needs: push_to_registry 
 
     runs-on: ubuntu-latest
     steps:
